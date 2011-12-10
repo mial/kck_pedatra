@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ClientCS</name>
+    </assembly>
+    <members>
+        <member name="T:CsClient.MessageHandler">
+            <summary>
+            Obsluguje komunikaty usłyszane przez agenta.
+            </summary>
+            <param name="sender">autor komunikatu</param>
+            <param name="massage">usłyszany komunikat</param>
+        </member>
+        <member name="T:CsClient.AgentAPI">
+            <summary>
+            Dostarcza API do komunikacji agenta z serwerem świata.
+            </summary>
+        </member>
+        <member name="M:CsClient.AgentAPI.#ctor(CsClient.MessageHandler)">
+            <summary>
+            Przygotowuje informacje niezbędne do pracy.
+            </summary>
+            
+            <param name="handler">Referencja do obiektu, który bedzie obsługiwał komunikację między agentami.</param>
+        </member>
+        <member name="M:CsClient.AgentAPI.Connect(System.String,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Nawiązuje połączenie z serwerem i uruchamia agenta na wybranym świecie.
+            </summary>
+            <param name="address">Adres IP lub host serwera</param>
+            <param name="port">Numer portu</param>
+            <param name="username">Nazwa grupy</param>
+            <param name="password">Hasło</param>
+            <param name="worldname">Nazwa świata</param>
+            <returns>Parametry podłaczanego świata.</returns>
+            <exception cref="T:System.Exception">Połączenie zostało zerwane</exception>
+        </member>
+        <member name="M:CsClient.AgentAPI.Disconnect">
+            <summary>
+            Rozłącza agenta z serwerem.
+            </summary>
+        </member>
+        <member name="M:CsClient.AgentAPI.Look">
+            <summary>
+            Pobiera informacje o polach znajdujących sie w zasięgu widzenia agenta.
+            </summary>
+            <returns>Pola w zasiegu widzenia agenta.</returns>
+            <exception cref="T:System.InvalidOperationException">Agent nie podłączony do świata</exception>
+        </member>
+        <member name="M:CsClient.AgentAPI.RotateLeft">
+            <summary>
+            Agent obraca sie w lewo.
+            </summary>
+            <returns>Fałsz jeśli agent ma niewystrczającą ilość energi.</returns>
+            <exception cref="T:System.InvalidOperationException">Agent nie podłączony do świata</exception>
+        </member>
+        <member name="M:CsClient.AgentAPI.RotateRight">
+            <summary>
+            Agent obraca sie w prawo.
+            </summary>
+            <returns>Fałsz jeśli agent ma niewystrczającą ilość energi.</returns>
+            <exception cref="T:System.InvalidOperationException">Agent nie podłączony do świata</exception>
+        </member>
+        <member name="M:CsClient.AgentAPI.Speak(System.String,System.Double)">
+            <summary>
+            Agent wykrzykuje komunikat.
+            </summary>
+            <param name="sentence">Treść komunikatu.</param>
+            <param name="range">Zasięg komunikatu.</param>
+            <returns>Fałsz jeśli agent ma niewystrczającą ilość energi.</returns>
+            <exception cref="T:System.InvalidOperationException">Agent nie podłączony do świata</exception>
+        </member>
+        <member name="M:CsClient.AgentAPI.StepForward">
+            <summary>
+            Agent robi krok naprzód.
+            </summary>
+            <returns>Fałsz jeśli agent ma niewystrczającą ilość energi.</returns>
+            <exception cref="T:System.InvalidOperationException">Agent nie podłączony do świata</exception>
+        </member>
+        <member name="M:CsClient.AgentAPI.Recharge">
+            <summary>
+            Agent ładuje energie ze zródła.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Agent nie podłączony do świata</exception>
+        </member>
+        <member name="P:CsClient.AgentAPI.Message">
+            <summary>
+            Zawiera ostatni usłyszany przez agenta komunikat.
+            </summary>
+        </member>
+        <member name="P:CsClient.AgentAPI.Connected">
+            <summary>
+            Wartość logiczna opisujaca połaczenie agenta z serwerem świata.
+            </summary>
+        </member>
+    </members>
+</doc>
