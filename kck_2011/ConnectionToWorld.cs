@@ -10,8 +10,9 @@ namespace kck_2011
 		private string password;
 		private string name;
 		private CsClient.AgentAPI api;
-		CsClient.MessageHandler message;
+		private CsClient.MessageHandler message;
 		private string ip;
+		
 		public ConnectionToWorld (string agentName)
 		{
 			name = agentName;
@@ -22,6 +23,7 @@ namespace kck_2011
 			api = new CsClient.AgentAPI( message );
 			ip = Settings.serverIP;
 		}
+		
 		public bool connect( ref Data.Realm.WorldParameters data) {
 			try {
 				data = api.Connect(ip,6008,team,password,world,name);
@@ -32,5 +34,59 @@ namespace kck_2011
 			}
 			return true; 
 		}
+		
+		public bool stepForward() {
+			try {
+				if ( api.StepForward() ) 
+					return true;
+				else 
+					return false;
+			}
+			catch(System.InvalidOperationException ex) {
+				Console.WriteLine("Padło połączenie");
+			}
+			return 0;
+		}
+		
+		public bool rotateLeft() {
+			try {
+				if ( api.RotateLeft() ) 
+					return true;
+				else 
+					return false;
+			}
+			catch (System.InvalidOperationException ex) {
+				Console.WriteLine("Padło połączenie");
+			}
+			return 0;
+		}
+		
+		public bool rotateRight() {
+			try {
+				if ( api.RotateRight() ) 
+					return true;
+				else 
+					return false;
+			}
+			catch(System.InvalidOperationException ex) {
+				Console.WriteLine("Padło połączenie");
+			}
+			return 0;
+		}
+		
+		public bool recharge() {
+			try {
+				if ( api.Recharge() ) 
+					return true;
+				else 
+					return false;
+			}
+			catch(System.InvalidOperationException ex) {
+				Console.WriteLine("Padło połączenie");
+			}
+			return 0;
+		}
+		
+		
 	}
 }
